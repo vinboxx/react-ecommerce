@@ -1,0 +1,24 @@
+[
+  {
+    "path": "/",
+    "component": "./routes/Home",
+    "chunk": "main"
+  },
+  {
+    "path": "/error",
+    "component": "./routes/Error",
+    "chunk": "main"
+  },
+  {
+    "path": "/catalog",
+    "component": "./routes/Catalog"
+  },
+  {
+    "path": "/products/:sef?",
+    "component": "./routes/Product"
+  },
+  {
+    "path": "/basket",
+    "component": "./routes/Basket"
+  }
+]
