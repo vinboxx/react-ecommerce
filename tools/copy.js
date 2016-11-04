@@ -18,13 +18,14 @@ async function copy() {
         start: 'node server.js',
       },
     }, null, 2)),
-    copyFile('LICENSE.txt', 'build/LICENSE.txt'),
     copyDir('src/public', 'build/public'),
+    copyDir('src/messages', 'build/messages'),
   ]);
 
   if (process.argv.includes('--watch')) {
     const watcher = await new Promise((resolve, reject) => {
       gaze([
+        'src/messages/**/*',
         'src/public/**/*',
       ], (err, val) => (err ? reject(err) : resolve(val)));
     });

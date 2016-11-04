@@ -1,16 +1,25 @@
-import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import FastClick from 'fastclick';
 import UniversalRouter from 'universal-router';
 import queryString from 'query-string';
 import { createPath } from 'history/PathUtils';
+import { addLocaleData } from 'react-intl';
+import en from 'react-intl/locale-data/en';
+import nb from 'react-intl/locale-data/nb';
+import zh from 'react-intl/locale-data/zh';
 import { indigo500 } from 'material-ui/styles/colors';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import history from './core/history';
 import App from './components/App';
+import configureStore from './store/configureStore';
+import { ErrorReporter, deepForceUpdate } from './core/devUtils';
+
+[en, nb, zh].forEach(addLocaleData);
+
+const store = configureStore(window.APP_STATE, { history });
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -26,6 +35,9 @@ const context = {
     const removeCss = styles.map(x => x._insertCss());
     return () => { removeCss.forEach(f => f()); };
   },
+  // Initialize a new Redux store
+  // http://redux.js.org/docs/basics/UsageWithReact.html
+  store,
 };
 
 function updateTag(tagName, keyName, keyValue, attrName, attrValue) {
@@ -107,6 +119,7 @@ let onRenderComplete = function initialRenderComplete() {
 FastClick.attach(document.body);
 
 const container = document.getElementById('app');
+let appInstance;
 let currentLocation = history.location;
 let routes = require('./routes').default;
 
@@ -128,8 +141,10 @@ async function onLocationChange(location) {
     // it finds the first route that matches provided URL path string
     // and whose action method returns anything other than `undefined`.
     const route = await UniversalRouter.resolve(routes, {
+      ...context,
       path: location.pathname,
       query: queryString.parse(location.search),
+      locale: store.getState().intl.locale,
     });
 
     // Prevent multiple page renders during the routing process
@@ -152,34 +167,59 @@ async function onLocationChange(location) {
       },
     });
 
-    ReactDOM.render(
+    appInstance = ReactDOM.render(
       <MuiThemeProvider muiTheme={muiTheme}>
         <App context={context}>{route.component}</App>
       </MuiThemeProvider>,
       container,
       () => onRenderComplete(route, location)
     );
-  } catch (err) {
+  } catch (error) {
+    console.error(error); // eslint-disable-line no-console
+
+    // Current url has been changed during navigation process, do nothing
+    if (currentLocation.key !== location.key) {
+      return;
+    }
+
+    // Display the error in full-screen for development mode
     if (process.env.NODE_ENV !== 'production') {
-      throw err;
+      appInstance = null;
+      document.title = `Error: ${error.message}`;
+      ReactDOM.render(<ErrorReporter error={error} />, container);
+      return;
     }
 
     // Avoid broken navigation in production mode by a full page reload on error
-    console.error(err); // eslint-disable-line no-console
     window.location.reload();
   }
 }
 
-// Handle client-side navigation by using HTML5 History API
-// For more information visit https://github.com/mjackson/history#readme
-history.listen(onLocationChange);
-onLocationChange(currentLocation);
+export default function main() {
+  // Handle client-side navigation by using HTML5 History API
+  // For more information visit https://github.com/mjackson/history#readme
+  currentLocation = history.location;
+  history.listen(onLocationChange);
+  onLocationChange(currentLocation);
+}
 
 // Enable Hot Module Replacement (HMR)
 if (module.hot) {
-  module.hot.accept('./routes', () => {
+  module.hot.accept('./routes', async () => {
     routes = require('./routes').default; // eslint-disable-line global-require
 
-    onLocationChange(currentLocation);
+    currentLocation = history.location;
+    await onLocationChange(currentLocation);
+    if (appInstance) {
+      try {
+        // Force-update the whole tree, including components that refuse to update
+        deepForceUpdate(appInstance);
+      } catch (error) {
+        appInstance = null;
+        document.title = `Hot Update Error: ${error.message}`;
+        ReactDOM.render(<ErrorReporter error={error} />, container);
+        return;
+      }
+    }
   });
 }

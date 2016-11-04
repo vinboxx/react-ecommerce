@@ -1,4 +1,5 @@
 import React from 'react';
+import { injectIntl, FormattedMessage, FormattedNumber } from 'react-intl';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
@@ -101,34 +102,54 @@ const Sidebar = () => (
   </div>
 );
 
-const MainPanel = () => (
-  <div style={styles.root}>
-    <p style={styles.matching}>Matching Products: 10</p>
-    <GridList
-      cols={3}
-      cellHeight={400}
-      padding={5}
-      style={styles.gridList}
-    >
-      {tilesData.map((tile) => (
-        <GridTile
-          key={tile.img}
-          title={tile.title}
-          subtitle={<span>by <b>{tile.author}</b></span>}
-          actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
-          actionPosition="left"
-          titlePosition="bottom"
-          cols={tile.featured ? 2 : 1}
-          rows={tile.featured ? 2 : 1}
-        >
-          <img src={tile.img} alt={tile.title} />
-        </GridTile>
+function Catalog() {
+  const productCount = 1000;
+
+  const MainPanel = () => (
+    <div style={styles.root}>
+      <p style={styles.matching}>
+        <FormattedMessage
+          id="matching products"
+          description="Result text after filter product"
+          defaultMessage={`
+            {productCount, plural,
+                =0 {No matching products}
+                one {{formattedProductCount} matching product}
+                other {{formattedProductCount} matching products}
+            }
+        `}
+          values={{
+            productCount,
+            formattedProductCount: (
+              <FormattedNumber value={productCount} />
+            ),
+          }}
+        />
+      </p>
+      <GridList
+        cols={3}
+        cellHeight={400}
+        padding={5}
+        style={styles.gridList}
+      >
+        {tilesData.map((tile) => (
+          <GridTile
+            key={tile.img}
+            title={tile.title}
+            subtitle={<span>by <b>{tile.author}</b></span>}
+            actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+            actionPosition="left"
+            titlePosition="bottom"
+            cols={tile.featured ? 2 : 1}
+            rows={tile.featured ? 2 : 1}
+          >
+            <img src={tile.img} alt={tile.title} />
+          </GridTile>
           ))}
-    </GridList>
-  </div>
+      </GridList>
+    </div>
 );
 
-function Catalog() {
   return (
     <Layout className={s.container}>
       <div className={s.row}>
@@ -143,4 +164,4 @@ function Catalog() {
   );
 }
 
-export default withStyles(s)(Catalog);
+export default injectIntl(withStyles(s)(Catalog));

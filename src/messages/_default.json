@@ -1,0 +1,74 @@
+[
+  {
+    "id": "navigation.aboutus",
+    "description": "About us link in header",
+    "defaultMessage": "About us",
+    "message": "",
+    "files": [
+      "src/components/Navigation/Navigation.js"
+    ]
+  },
+  {
+    "id": "navigation.catalog",
+    "description": "catalog link in header",
+    "defaultMessage": "catalog",
+    "message": "",
+    "files": [
+      "src/components/Navigation/Navigation.js"
+    ]
+  },
+  {
+    "id": "navigation.home",
+    "description": "Home link in header",
+    "defaultMessage": "Home",
+    "message": "",
+    "files": [
+      "src/components/Navigation/Navigation.js"
+    ]
+  },
+  {
+    "id": "hello greet",
+    "description": "Test text in home page",
+    "defaultMessage": "Hello, {txt1} {txt2}!",
+    "message": "",
+    "files": [
+      "src/routes/home/Home.js"
+    ]
+  },
+  {
+    "id": "good bye",
+    "description": "Test text in home page",
+    "defaultMessage": "bye bye",
+    "message": "",
+    "files": [
+      "src/routes/home/Home.js"
+    ]
+  },
+  {
+    "id": "well done",
+    "description": "Test text in home page",
+    "defaultMessage": "Well done {name}",
+    "message": "",
+    "files": [
+      "src/routes/home/Home.js"
+    ]
+  },
+  {
+    "id": "app title",
+    "description": "App title",
+    "defaultMessage": "React Simple Cart",
+    "message": "",
+    "files": [
+      "src/components/Header/Header.js"
+    ]
+  },
+  {
+    "id": "matching products",
+    "description": "Result text after filter product",
+    "defaultMessage": "{productCount, plural, =0 {No matching products} one {{formattedProductCount} matching product} other {{formattedProductCount} matching products}}",
+    "message": "",
+    "files": [
+      "src/routes/catalog/Catalog.js"
+    ]
+  }
+]

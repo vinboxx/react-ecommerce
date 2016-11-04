@@ -1,0 +1,74 @@
+[
+  {
+    "id": "navigation.aboutus",
+    "description": "About us link in header",
+    "defaultMessage": "About us",
+    "message": "Om oss",
+    "files": [
+      "src/components/Navigation/Navigation.js"
+    ]
+  },
+  {
+    "id": "navigation.catalog",
+    "description": "catalog link in header",
+    "defaultMessage": "catalog",
+    "message": "Katalog",
+    "files": [
+      "src/components/Navigation/Navigation.js"
+    ]
+  },
+  {
+    "id": "navigation.home",
+    "description": "Home link in header",
+    "defaultMessage": "Home",
+    "message": "Hjem",
+    "files": [
+      "src/components/Navigation/Navigation.js"
+    ]
+  },
+  {
+    "id": "hello greet",
+    "description": "Test text in home page",
+    "defaultMessage": "Hello, {txt1} {txt2}!",
+    "message": "Hei, {txt1} {txt2}!",
+    "files": [
+      "src/routes/home/Home.js"
+    ]
+  },
+  {
+    "id": "good bye",
+    "description": "Test text in home page",
+    "defaultMessage": "bye bye",
+    "message": "",
+    "files": [
+      "src/routes/home/Home.js"
+    ]
+  },
+  {
+    "id": "well done",
+    "description": "Test text in home page",
+    "defaultMessage": "Well done {name}",
+    "message": "Bra jobba {name}",
+    "files": [
+      "src/routes/home/Home.js"
+    ]
+  },
+  {
+    "id": "app title",
+    "description": "App title",
+    "defaultMessage": "React Simple Cart",
+    "message": "React Simple Handlekurv",
+    "files": [
+      "src/components/Header/Header.js"
+    ]
+  },
+  {
+    "id": "matching products",
+    "description": "Result text after filter product",
+    "defaultMessage": "{productCount, plural, =0 {No matching products} one {{formattedProductCount} matching product} other {{formattedProductCount} matching products}}",
+    "message": "{productCount, plural, =0 {Ingen passende produkter} one {{formattedProductCount} matchende produkt} other {{formattedProductCount} matchende produkter}}",
+    "files": [
+      "src/routes/catalog/Catalog.js"
+    ]
+  }
+]

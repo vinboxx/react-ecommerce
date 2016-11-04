@@ -1,7 +1,7 @@
 import React from 'react';
 import Home from './Home';
 
-const title = 'Welcome!';
+const title = 'Home';
 
 export default {
 

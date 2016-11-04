@@ -1,0 +1,74 @@
+[
+  {
+    "id": "navigation.aboutus",
+    "description": "About us link in header",
+    "defaultMessage": "About us",
+    "message": "关于我们",
+    "files": [
+      "src/components/Navigation/Navigation.js"
+    ]
+  },
+  {
+    "id": "navigation.catalog",
+    "description": "catalog link in header",
+    "defaultMessage": "catalog",
+    "message": "目录",
+    "files": [
+      "src/components/Navigation/Navigation.js"
+    ]
+  },
+  {
+    "id": "navigation.home",
+    "description": "Home link in header",
+    "defaultMessage": "Home",
+    "message": "家",
+    "files": [
+      "src/components/Navigation/Navigation.js"
+    ]
+  },
+  {
+    "id": "hello greet",
+    "description": "Test text in home page",
+    "defaultMessage": "Hello, {txt1} {txt2}!",
+    "message": "你好, {txt1} {txt2}!",
+    "files": [
+      "src/routes/home/Home.js"
+    ]
+  },
+  {
+    "id": "good bye",
+    "description": "Test text in home page",
+    "defaultMessage": "bye bye",
+    "message": "",
+    "files": [
+      "src/routes/home/Home.js"
+    ]
+  },
+  {
+    "id": "well done",
+    "description": "Test text in home page",
+    "defaultMessage": "Well done {name}",
+    "message": "干得好 {name}",
+    "files": [
+      "src/routes/home/Home.js"
+    ]
+  },
+  {
+    "id": "app title",
+    "description": "App title",
+    "defaultMessage": "React Simple Cart",
+    "message": "React 简单购物车",
+    "files": [
+      "src/components/Header/Header.js"
+    ]
+  },
+  {
+    "id": "matching products",
+    "description": "Result text after filter product",
+    "defaultMessage": "{productCount, plural, =0 {No matching products} one {{formattedProductCount} matching product} other {{formattedProductCount} matching products}}",
+    "message": "{productCount, plural, =0 {没有匹配的产品} one {{formattedProductCount}个匹配产品} other {{formattedProductCount}个匹配产品}}",
+    "files": [
+      "src/routes/catalog/Catalog.js"
+    ]
+  }
+]

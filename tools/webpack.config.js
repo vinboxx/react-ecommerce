@@ -3,6 +3,8 @@ import webpack from 'webpack';
 import extend from 'extend';
 import AssetsPlugin from 'assets-webpack-plugin';
 
+const INTL_REQUIRE_DESCRIPTIONS = true;
+
 const isDebug = !process.argv.includes('--release');
 const isVerbose = process.argv.includes('--verbose');
 
@@ -67,6 +69,13 @@ const config = {
               // Turn JSX elements into exploded React objects
               // https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-inline-elements
               'transform-react-inline-elements',
+            ],
+
+            // https://github.com/yahoo/babel-plugin-react-intl#options
+            ['react-intl',
+              {
+                enforceDescriptions: INTL_REQUIRE_DESCRIPTIONS,
+              },
             ],
           ],
         },
@@ -210,7 +219,7 @@ const config = {
 // -----------------------------------------------------------------------------
 
 const clientConfig = extend(true, {}, config, {
-  entry: './client.js',
+  entry: './clientLoader.js',
 
   output: {
     filename: isDebug ? '[name].js?[chunkhash]' : '[name].[chunkhash].js',
@@ -281,7 +290,7 @@ const serverConfig = extend(true, {}, config, {
     /^\.\/assets$/,
     (context, request, callback) => {
       const isExternal =
-        request.match(/^[@a-z][a-z\/\.\-0-9]*$/i) && // eslint-disable-line no-useless-escape
+        request.match(/^[@a-z][a-z/.\-0-9]*$/i) &&
         !request.match(/\.(css|less|scss|sss)$/i);
       callback(null, Boolean(isExternal));
     },
