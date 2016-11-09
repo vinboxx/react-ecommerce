@@ -9,6 +9,8 @@ export default {
   children: [
     require('./home').default,
     require('./catalog').default,
+    require('./product').default,
+    require('./product').detail,
     require('./basket').default,
     require('./aboutUs').default,
 

@@ -68,7 +68,35 @@
     "defaultMessage": "{productCount, plural, =0 {No matching products} one {{formattedProductCount} matching product} other {{formattedProductCount} matching products}}",
     "message": "{productCount, plural, =0 {没有匹配的产品} one {{formattedProductCount}个匹配产品} other {{formattedProductCount}个匹配产品}}",
     "files": [
-      "src/routes/catalog/Catalog.js"
+      "src/components/FilterableProductTable/ProductResultText.js"
+    ]
+  },
+  {
+    "id": "product.rating",
+    "description": "Product rating",
+    "defaultMessage": "Rating: {rating}",
+    "message": "评分: {rating}",
+    "files": [
+      "src/routes/product/Product.js"
+    ]
+  },
+  {
+    "id": "product.price",
+    "description": "Product price",
+    "defaultMessage": "Price: {price}",
+    "message": "价钱: {price}",
+    "files": [
+      "src/routes/product/Product.js"
+    ]
+  },
+  {
+    "id": "button.buy",
+    "description": "Buy button",
+    "defaultMessage": "Buy",
+    "message": "购买",
+    "files": [
+      "src/components/FilterableProductTable/ProductRow.js",
+      "src/routes/product/Product.js"
     ]
   }
 ]

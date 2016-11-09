@@ -1,0 +1,21 @@
+.col-md-2 {
+  float: left;
+  width: 16.6667%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.col-md-10 {
+  float: left;
+  width: 83.3333%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.row {
+  &::after {
+    display: table;
+    content: '';
+    clear: both;
+  }
+}

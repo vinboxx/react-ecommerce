@@ -68,7 +68,35 @@
     "defaultMessage": "{productCount, plural, =0 {No matching products} one {{formattedProductCount} matching product} other {{formattedProductCount} matching products}}",
     "message": "",
     "files": [
-      "src/routes/catalog/Catalog.js"
+      "src/components/FilterableProductTable/ProductResultText.js"
+    ]
+  },
+  {
+    "id": "product.rating",
+    "description": "Product rating",
+    "defaultMessage": "Rating: {rating}",
+    "message": "",
+    "files": [
+      "src/routes/product/Product.js"
+    ]
+  },
+  {
+    "id": "product.price",
+    "description": "Product price",
+    "defaultMessage": "Price: {price}",
+    "message": "",
+    "files": [
+      "src/routes/product/Product.js"
+    ]
+  },
+  {
+    "id": "button.buy",
+    "description": "Buy button",
+    "defaultMessage": "Buy",
+    "message": "",
+    "files": [
+      "src/components/FilterableProductTable/ProductRow.js",
+      "src/routes/product/Product.js"
     ]
   }
 ]

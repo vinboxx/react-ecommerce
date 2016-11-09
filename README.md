@@ -5,7 +5,6 @@
   * [Node.js](https://nodejs.org/) v6.5 or newer
   * `npm` v3.10 or newer (new to [npm](https://docs.npmjs.com/)?)
   * `node-gyp` prerequisites mentioned [here](https://github.com/nodejs/node-gyp)
-  * Text editor or IDE pre-configured with React/JSX/Flow/ESlint ([learn more](./how-to-configure-text-editors.md))
 
 ### Directory Layout
 
@@ -47,7 +46,7 @@ Before you start, take a moment to see how the project structure looks like:
 You can start by cloning the latest version on your local machine by running:
 
 ```shell
-$ git clone ssh://git@stash.webon.net:7999/~weera/react-ecommerce.git
+$ git clone https://github.com/vinboxx/react-ecommerce.git
 $ cd react-ecommerce
 ```
 
@@ -71,8 +70,6 @@ Now you can open your web app in a browser, on mobile devices and start
 hacking. Whenever you modify any of the source files inside the `/src` folder,
 the module bundler ([Webpack](http://webpack.github.io/)) will recompile the
 app on the fly and refresh all the connected browsers.
-
-![browsersync](https://dl.dropboxusercontent.com/u/16006521/react-starter-kit/brwosersync.jpg)
 
 Note that the `npm start` command launches the app in `development` mode,
 the compiled output files are not optimized and minimized in this case.
@@ -105,6 +102,11 @@ To check the source code for syntax errors and potential issues run:
 
 ```shell
 $ npm run lint
+```
+To automatically fix problems run:
+
+```shell
+$ npm run lint:fix
 ```
 
 To launch unit tests:
